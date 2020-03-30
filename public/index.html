@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/styles.css">
+    <script src="./js/bundle.js"></script>
+    <title>To do list</title>
+</head>
+<body>
+    <div id="app">
+        <h1>ToDo's</h1>
+        <form v-on:submit.prevent="saveNewTask" class="new-task-form">
+            <input type="text" id="new-task" v-model="newTask" class="new-task"/>
+            <input type="radio" id="high" name="priority" value="high" v-model="priorityPicked">
+            <label for="high">High</label>
+            <input type="radio" id="low" name="priority" value="low" v-model="priorityPicked">
+            <label for="low">Low</label>
+            <input type="submit" value="Save" class="save-button"/>
+        </form>
+        <ul>
+          
+            <!-- <li v-for="(item, index) in items" :class="item.isPurchased ? 'purchased':'not-purchased'" >
+              <span>{{ item.name }}</span>
+              <span v-if="item.isPurchased"> Purchased!</span>
+              <button v-if="!item.isPurchased" v-on:click="buyItem(index)">Purchase</button>
+            </li> -->
+
+            <li v-for="(task, index) in tasks" :class="task.hasDone? 'done':'not-yet'">
+                <span class="task-info">{{ task.description }}</span>
+                <span class="task-priority" v-if="!task.hasDone" :class="task.priority">{{ task.priority }}</span>
+                <span class="task-done"><button v-if="!task.hasDone" v-on:click="doneTask(index)">Done</button></span>
+            </li>
+        </ul>
+    </div>
+    
+</body>
+</html>
